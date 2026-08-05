@@ -1,32 +1,23 @@
-# Minecraft Structure Finder
+# BaybayinTranslate.com
 
-A fast, privacy-first structure coordinate finder for Minecraft seeds. Structure placement is calculated locally in the browser by an MIT-licensed [cubiomes](https://github.com/Cubitect/cubiomes) WebAssembly build. The interface uses Leaflet with its Canvas renderer.
+A static-first Baybayin translator and learning hub for English and Tagalog. Every route renders complete HTML for search engines; browser JavaScript is reserved for translation, exports, sharing, and the tattoo preview.
 
 ## Features
 
-- Java 1.12–1.21 selector and Overworld, Nether, and End dimensions
-- Interactive coordinate map and nearest-first structure list
-- Copyable X/Z coordinates and shareable `?seed=` URLs
-- Responsive layout, local Web Worker search, no backend or seed uploads
-- Villages, ancient cities, trial chambers, strongholds, mansions, monuments, temples, outposts, ruined portals, igloos, shipwrecks, fortresses, bastions, and End cities
+- Sound-based English and Tagalog to Baybayin conversion
+- Per-character Latin guides and three display styles
+- PNG and SVG export, transparent backgrounds, copy, and share links
+- Baybayin tattoo generator with four visual treatments
+- Interactive learning chart, article library, font guide, and regional script guides
+- WebApplication, FAQPage, HowTo, and Article structured data
+- Sitemap, robots policy, responsive layout, and generated social card
 
-Bedrock is visible as a preview option, but the current cubiomes engine validates Java structure placement only. The UI prevents inaccurate Bedrock results.
-
-## Local development
+## Develop and validate
 
 ```bash
-npm install
 npm run dev
-```
-
-Build and test with:
-
-```bash
+npm run build:pages
 npm test
 ```
 
-## WASM provenance
-
-`public/wasm/cubiomes.wasm` is compiled from the official `Cubitect/cubiomes` source with a small bridge in `engine/cubiomes_bridge.c`. The upstream MIT license is included at `public/wasm/LICENSE-cubiomes.txt`.
-
-This project is independent and is not affiliated with Mojang or Microsoft.
+The static page export is written to `dist/client` for Cloudflare Pages-compatible hosting.
