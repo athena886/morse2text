@@ -1,0 +1,34 @@
+.sound-reference {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 6px;
+  margin: 24px 0;
+}
+
+.sound-reference span {
+  min-height: 58px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.sound-reference b {
+  color: var(--gold-2);
+  font: 24px "Noto Sans Tagalog", sans-serif;
+}
+
+.sound-reference small {
+  margin-top: 2px;
+  color: #a99689;
+  font-size: 7px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 600px) {
+  .sound-reference { grid-template-columns: repeat(4, 1fr); }
+}
