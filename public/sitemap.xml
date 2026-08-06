@@ -1,19 +1,2 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://baybayintranslate.com/</loc><priority>1.0</priority></url>
-  <url><loc>https://baybayintranslate.com/tattoo</loc><priority>0.9</priority></url>
-  <url><loc>https://baybayintranslate.com/learn</loc><priority>0.9</priority></url>
-  <url><loc>https://baybayintranslate.com/fonts</loc><priority>0.8</priority></url>
-  <url><loc>https://baybayintranslate.com/learn/baybayin-history</loc></url>
-  <url><loc>https://baybayintranslate.com/learn/baybayin-vs-alibata</loc></url>
-  <url><loc>https://baybayintranslate.com/learn/write-your-name</loc></url>
-  <url><loc>https://baybayintranslate.com/learn/regional-variants</loc></url>
-  <url><loc>https://baybayintranslate.com/learn/calligraphy-beginners</loc></url>
-  <url><loc>https://baybayintranslate.com/learn/modern-baybayin</loc></url>
-  <url><loc>https://baybayintranslate.com/learn/tattoo-design-guide</loc></url>
-  <url><loc>https://baybayintranslate.com/learn/common-mistakes</loc></url>
-  <url><loc>https://baybayintranslate.com/sulat/badlit</loc></url>
-  <url><loc>https://baybayintranslate.com/sulat/kulitan</loc></url>
-  <url><loc>https://baybayintranslate.com/sulat/hanunoo</loc></url>
-  <url><loc>https://baybayintranslate.com/sulat/tagbanwa</loc></url>
-</urlset>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>https://morse2text.com/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url><url><loc>https://morse2text.com/morse-code-alphabet</loc><changefreq>monthly</changefreq><priority>0.7</priority></url><url><loc>https://morse2text.com/learn-morse-code</loc><changefreq>monthly</changefreq><priority>0.7</priority></url></urlset>

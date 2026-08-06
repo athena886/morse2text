@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://baybayintranslate.com/sitemap.xml
+Sitemap: https://morse2text.com/sitemap.xml
