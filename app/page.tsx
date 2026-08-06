@@ -21,13 +21,13 @@ const faqSchema = {"@context":"https://schema.org","@type":"FAQPage",mainEntity:
 
 export default function Home() {
   return <>
-    <header className="site-nav"><a className="logo" href="#top"><span className="logo-signal">·−</span>morse<span>2text</span></a><nav><a href="#how">How it works</a><a href="#alphabet">Alphabet</a><a href="#faq">FAQ</a></nav><a className="nav-button" href="#translator">Open translator</a></header>
+    <header className="site-nav"><a className="logo" href="#top"><span className="logo-signal">·−</span>morse<span>2text</span></a><nav><a href="#how">How it works</a><a href="#alphabet">Alphabet</a><a href="#faq">FAQ</a></nav><a className="nav-button" href="#translator">Start translating</a></header>
     <main id="top">
       <section className="hero">
         <div className="signal-cloud" aria-hidden="true"><span>· · ·</span><span>− − −</span><span>· − ·</span></div>
-        <p className="eyebrow"><i/> Free · Private · No sign-up</p>
+        <p className="eyebrow"><i/> Instant Morse code translator</p>
         <h1>Say anything.<br/><em>Send it in Morse.</em></h1>
-        <p className="hero-copy">Translate text to Morse code—or decode signals back to text. Then hear it, see it, feel it, and download it.</p>
+        <p className="hero-copy">Type text or Morse code below. The translator detects the direction automatically and converts it as you type.</p>
         <div className="trust-row"><span>↔ Instant translation</span><span>◉ Real Morse audio</span><span>↓ WAV download</span></div>
       </section>
       <section id="translator" className="tool-wrap"><MorseTool/></section>
