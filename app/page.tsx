@@ -26,8 +26,8 @@ export default function Home() {
       <section className="hero">
         <div className="signal-cloud" aria-hidden="true"><span>· · ·</span><span>− − −</span><span>· − ·</span></div>
         <p className="eyebrow"><i/> Instant Morse code translator</p>
-        <h1>Say anything.<br/><em>Send it in Morse.</em></h1>
-        <p className="hero-copy">Type text or Morse code below. The translator detects the direction automatically and converts it as you type.</p>
+        <h1>Morse Code<br/><em>Translator &amp; Generator</em></h1>
+        <p className="hero-copy"><strong>Say anything. Send it in Morse.</strong> Type text or Morse code below—the direction is detected automatically.</p>
         <div className="trust-row"><span>↔ Instant translation</span><span>◉ Real Morse audio</span><span>↓ WAV download</span></div>
       </section>
       <section id="translator" className="tool-wrap"><MorseTool/></section>
