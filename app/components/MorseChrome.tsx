@@ -1,5 +1,5 @@
 export function MorseHeader(){
-  return <header className="guide-nav"><a className="logo" href="/"><span className="logo-signal">·−</span>morse<span>2text</span></a><nav><a href="/#translator">Translator</a><a href="/morse-code-alphabet">Alphabet</a><a href="/learn-morse-code">Learn</a></nav><a className="nav-button" href="/#translator">Open translator</a></header>;
+  return <header className="guide-nav"><a className="logo" href="/"><span className="logo-signal">·−</span>morse<span>2text</span></a><nav><a href="/#translator">Translator</a><a href="/morse-code-alphabet/">Alphabet</a><a href="/learn-morse-code/">Learn</a></nav><a className="nav-button" href="/#translator">Open translator</a></header>;
 }
 
 export function MorseFooter(){

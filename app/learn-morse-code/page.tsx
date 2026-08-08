@@ -4,8 +4,8 @@ import {MorseFooter,MorseHeader,TranslatorCta} from "../components/MorseChrome";
 export const metadata:Metadata={
   title:"Learn Morse Code — Beginner Guide & Practice Plan | morse2text",
   description:"Learn Morse code with a simple beginner method, correct timing, daily drills, and a seven-day practice plan using sound and rhythm.",
-  alternates:{canonical:"/learn-morse-code"},
-  openGraph:{title:"How to Learn Morse Code",description:"A practical beginner guide to Morse timing, sound, and daily practice.",url:"/learn-morse-code"}
+  alternates:{canonical:"/learn-morse-code/"},
+  openGraph:{title:"How to Learn Morse Code",description:"A practical beginner guide to Morse timing, sound, and daily practice.",url:"/learn-morse-code/"}
 };
 
 const plan=[
@@ -21,7 +21,7 @@ const plan=[
 export default function LearnMorsePage(){return <>
   <MorseHeader/>
   <main className="guide-page">
-    <section className="guide-hero learn-hero"><p className="eyebrow"><i/> Beginner-friendly method</p><h1>Learn Morse Code</h1><p>Build real listening skill with rhythm, correct spacing, and short daily drills. You do not need to memorize the entire chart before you begin.</p><div className="guide-actions"><a className="primary" href="/#translator">Practice with the translator</a><a href="/morse-code-alphabet">Open alphabet chart →</a></div></section>
+    <section className="guide-hero learn-hero"><p className="eyebrow"><i/> Beginner-friendly method</p><h1>Learn Morse Code</h1><p>Build real listening skill with rhythm, correct spacing, and short daily drills. You do not need to memorize the entire chart before you begin.</p><div className="guide-actions"><a className="primary" href="/#translator">Practice with the translator</a><a href="/morse-code-alphabet/">Open alphabet chart →</a></div></section>
     <section className="guide-body">
       <div className="guide-lead"><div><p className="eyebrow">The right foundation</p><h2>Hear characters as complete sounds</h2></div><div><p>The fastest way to learn Morse code is to connect each character with one rhythm. When you hear A, recognize “di-dah” as a single sound rather than translating a dot and a dash separately. Counting symbols feels easier on day one, but it creates an extra mental step that limits your speed later.</p><p>Start at a character speed near 15–20 words per minute while leaving generous gaps between characters. This keeps each pattern sounding natural without overwhelming you. As recognition improves, shorten the gaps instead of speeding up every dot and dash.</p></div></div>
       <section className="timing-card section-space"><div><p className="eyebrow">The universal ratio</p><h2>Morse timing in five rules</h2><p>Choose any comfortable dot length. Every other duration follows from that single unit.</p></div><div className="timing-list"><div><b>1 unit</b><span>Dot</span><code>·</code></div><div><b>3 units</b><span>Dash</span><code>—</code></div><div><b>1 unit</b><span>Gap inside a character</span><code>··</code></div><div><b>3 units</b><span>Gap between letters</span><code>A B</code></div><div><b>7 units</b><span>Gap between words</span><code>A / B</code></div></div></section>

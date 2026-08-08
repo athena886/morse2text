@@ -4,8 +4,8 @@ import {MorseFooter,MorseHeader,TranslatorCta} from "../components/MorseChrome";
 export const metadata:Metadata={
   title:"Morse Code Alphabet — Letters, Numbers & Chart | morse2text",
   description:"Learn the complete Morse code alphabet with letters A–Z, numbers 0–9, common punctuation, timing rules, and practical memorization tips.",
-  alternates:{canonical:"/morse-code-alphabet"},
-  openGraph:{title:"Morse Code Alphabet & Reference Chart",description:"The complete International Morse code chart with practical learning tips.",url:"/morse-code-alphabet"}
+  alternates:{canonical:"/morse-code-alphabet/"},
+  openGraph:{title:"Morse Code Alphabet & Reference Chart",description:"The complete International Morse code chart with practical learning tips.",url:"/morse-code-alphabet/"}
 };
 
 const letters=[["A",".-"],["B","-..."],["C","-.-."],["D","-.."],["E","."],["F","..-."],["G","--."],["H","...."],["I",".."],["J",".---"],["K","-.-"],["L",".-.."],["M","--"],["N","-."],["O","---"],["P",".--."],["Q","--.-"],["R",".-."],["S","..."],["T","-"],["U","..-"],["V","...-"],["W",".--"],["X","-..-"],["Y","-.--"],["Z","--.."]];
@@ -17,7 +17,7 @@ function CodeGrid({items,label}:{items:string[][];label:string}){return <div cla
 export default function MorseAlphabetPage(){return <>
   <MorseHeader/>
   <main className="guide-page">
-    <section className="guide-hero"><p className="eyebrow"><i/> Complete reference chart</p><h1>Morse Code Alphabet</h1><p>Learn every International Morse code letter and number, then practice reading signals as rhythm instead of counting individual dots and dashes.</p><div className="guide-actions"><a className="primary" href="/#translator">Use the translator</a><a href="/learn-morse-code">Start learning Morse →</a></div></section>
+    <section className="guide-hero"><p className="eyebrow"><i/> Complete reference chart</p><h1>Morse Code Alphabet</h1><p>Learn every International Morse code letter and number, then practice reading signals as rhythm instead of counting individual dots and dashes.</p><div className="guide-actions"><a className="primary" href="/#translator">Use the translator</a><a href="/learn-morse-code/">Start learning Morse →</a></div></section>
     <section className="guide-body">
       <div className="guide-lead"><div><p className="eyebrow">A–Z reference</p><h2>Letters in Morse code</h2></div><p>Each letter is represented by a short sequence of dots and dashes. A dot is one time unit and a dash is three. Begin with the shortest patterns—E (<code>.</code>), T (<code>-</code>), I (<code>..</code>), A (<code>.-</code>), N (<code>-.</code>), and M (<code>--</code>)—before adding longer characters.</p></div>
       <CodeGrid items={letters} label="Morse code letters A through Z"/>
