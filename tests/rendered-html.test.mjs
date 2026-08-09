@@ -1,5 +1,61 @@
-import assert from "node:assert/strict"; import { access,readFile } from "node:fs/promises"; import test from "node:test";
-async function render(path="/"){const u=new URL("../dist/server/index.js",import.meta.url);u.searchParams.set("test",`${process.pid}-${Date.now()}`);const{default:w}=await import(u.href);return w.fetch(new Request(`http://localhost${path}`,{headers:{accept:"text/html"}}),{ASSETS:{fetch:async()=>new Response("Not found",{status:404})}},{waitUntil(){},passThroughOnException(){}})}
-test("server-renders complete Baybayin product and SEO",async()=>{const r=await render();assert.equal(r.status,200);const h=await r.text();assert.match(h,/<title>Baybayin Translator – Convert English &amp; Tagalog to Baybayin<\/title>/);assert.match(h,/<meta name="description" content="Baybayin Translator converts English and Tagalog/);assert.equal((h.match(/<h1\b/g)||[]).length,1);assert.match(h,/<script id="app-schema" type="application\/ld\+json">\{"@context":"https:\/\/schema\.org","@type":"WebApplication"/);assert.match(h,/<script id="faq-schema" type="application\/ld\+json">\{"@context":"https:\/\/schema\.org","@type":"FAQPage"/);assert.match(h,/Mahal kita/);assert.match(h,/PNG/);assert.match(h,/Learn Baybayin/);assert.match(h,/Baybayin base character reference/);assert.match(h,/Traditional Baybayin often left final consonants unwritten/);assert.doesNotMatch(h,/fonts\.googleapis\.com|Minecraft|codex-preview/)});
-test("renders all core routes",async()=>{for(const p of ["/tattoo","/learn","/fonts","/learn/baybayin-history","/sulat/kulitan"]){const r=await render(p);assert.equal(r.status,200,p);const h=await r.text();assert.equal((h.match(/<h1\b/g)||[]).length,1,p)}});
-test("ships crawl controls and local assets",async()=>{const[robots,sitemap]=await Promise.all([readFile(new URL("../public/robots.txt",import.meta.url),"utf8"),readFile(new URL("../public/sitemap.xml",import.meta.url),"utf8")]);assert.match(robots,/baybayintranslate\.com\/sitemap/);for(const path of ["sulat/tagbanwa","learn/regional-variants","learn/calligraphy-beginners","learn/modern-baybayin","learn/tattoo-design-guide","learn/common-mistakes"])assert.match(sitemap,new RegExp(path));for(const file of ["og.png","fonts/noto-sans-tagalog-v23.woff2","fonts/plus-jakarta-sans-latin.woff2","fonts/plus-jakarta-sans-latin-italic.woff2"])await access(new URL(`../public/${file}`,import.meta.url))});
+import assert from "node:assert/strict";
+import { access, readFile } from "node:fs/promises";
+import test from "node:test";
+
+async function render(path = "/") {
+  const url = new URL("../dist/server/index.js", import.meta.url);
+  url.searchParams.set("test", `${process.pid}-${Date.now()}`);
+  const { default: worker } = await import(url.href);
+
+  return worker.fetch(
+    new Request(`https://morse2text.com${path}`, {
+      headers: { accept: "text/html" },
+    }),
+    { ASSETS: { fetch: async () => new Response("Not found", { status: 404 }) } },
+    { waitUntil() {}, passThroughOnException() {} },
+  );
+}
+
+test("server-renders the Morse translator and SEO metadata", async () => {
+  const response = await render();
+  assert.equal(response.status, 200);
+  const html = await response.text();
+
+  assert.match(html, /<title>Morse Code Translator &amp; Generator/);
+  assert.match(html, /<meta name="description" content="Free online Morse Code Translator &amp; Generator/);
+  assert.equal((html.match(/<h1\b/g) || []).length, 1);
+  assert.match(html, /"@type":"WebApplication"/);
+  assert.match(html, /"@type":"FAQPage"/);
+  assert.match(html, /Download WAV/);
+  assert.match(html, /Morse code alphabet/);
+  assert.doesNotMatch(html, /codex-preview/i);
+});
+
+test("renders all public routes", async () => {
+  for (const path of ["/", "/morse-code-alphabet", "/learn-morse-code"]) {
+    const response = await render(path);
+    assert.equal(response.status, 200, path);
+    const html = await response.text();
+    assert.equal((html.match(/<h1\b/g) || []).length, 1, path);
+  }
+});
+
+test("ships crawl controls and branded static assets", async () => {
+  const [robots, sitemap] = await Promise.all([
+    readFile(new URL("../public/robots.txt", import.meta.url), "utf8"),
+    readFile(new URL("../public/sitemap.xml", import.meta.url), "utf8"),
+  ]);
+
+  assert.match(robots, /https:\/\/morse2text\.com\/sitemap\.xml/);
+  for (const url of [
+    "https://morse2text.com/",
+    "https://morse2text.com/morse-code-alphabet/",
+    "https://morse2text.com/learn-morse-code/",
+  ]) {
+    assert.ok(sitemap.includes(`<loc>${url}</loc>`), url);
+  }
+
+  for (const file of ["og.png", "favicon.svg", "404.html"]) {
+    await access(new URL(`../public/${file}`, import.meta.url));
+  }
+});

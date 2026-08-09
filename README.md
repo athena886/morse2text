@@ -1,23 +1,60 @@
-# BaybayinTranslate.com
+# morse2text — Morse Code Translator & Generator
 
-A static-first Baybayin translator and learning hub for English and Tagalog. Every route renders complete HTML for search engines; browser JavaScript is reserved for translation, exports, sharing, and the tattoo preview.
+> Turn text into sound, light, and Morse code—instantly. Free, private, and no sign-up required.
+
+**Live site: [morse2text.com](https://morse2text.com/)**
+
+![morse2text Morse Code Translator & Generator](./public/og.png)
 
 ## Features
 
-- Sound-based English and Tagalog to Baybayin conversion
-- Per-character Latin guides and three display styles
-- PNG and SVG export, transparent backgrounds, copy, and share links
-- Baybayin tattoo generator with four visual treatments
-- Interactive learning chart, article library, font guide, and regional script guides
-- WebApplication, FAQPage, HowTo, and Article structured data
-- Sitemap, robots policy, responsive layout, and generated social card
+- Bidirectional conversion: text to Morse code and Morse code to text, with automatic input detection
+- Morse audio playback with adjustable speed and tone
+- Synchronized flashing-light signals
+- WAV audio downloads
+- Vibration patterns on supported mobile devices
+- Light and dark themes
+- One-click copy and native sharing
+- Private, device-local translation history
+- Complete references for letters A–Z, numbers 0–9, common punctuation, and timing rules
 
-## Develop and validate
+## Tech stack
+
+- React 19 and TypeScript
+- Vinext and Vite
+- Web Audio API, Vibration API, and browser-native sharing
+- Cloudflare-compatible static and Worker output
+- Pure client-side translation—messages are not sent to a backend
+
+## Getting started
+
+Install the dependencies and start the development server:
 
 ```bash
+npm install
 npm run dev
+```
+
+Build the production site and static pages:
+
+```bash
 npm run build:pages
+```
+
+Run the automated checks:
+
+```bash
 npm test
 ```
 
-The static page export is written to `dist/client` for Cloudflare Pages-compatible hosting.
+## Project links
+
+- [Morse Code Translator & Generator](https://morse2text.com/)
+- [Morse Code Alphabet reference](https://morse2text.com/morse-code-alphabet/)
+- [Learn Morse Code guide](https://morse2text.com/learn-morse-code/)
+
+## License
+
+Released under the [MIT License](./LICENSE).
+
+Built with care as a practical tool for learning and using Morse code.
