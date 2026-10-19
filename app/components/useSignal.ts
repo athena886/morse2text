@@ -29,7 +29,7 @@ export function useSignal() {
     return () => { document.removeEventListener("visibilitychange", hide); stop(); };
   }, [stop]);
 
-  const play = useCallback(async (morse: string, speed = 18, frequency = 700, kind: Kind = "audio") => {
+  const play = useCallback(async (morse: string, speed = 18, frequency = 700, kind: Kind = "audio", volume = 1) => {
     stop();
     const sequence = buildSequence(morse, speed);
     if (!sequence.pulses.length) throw new Error("Enter a valid message first.");
@@ -40,7 +40,7 @@ export function useSignal() {
       if (!Constructor) throw new Error("Audio is not available in this browser. You can still copy the Morse code.");
       audio.current ??= new SignalAudio(() => new Constructor());
       setActive(kind);
-      try { await audio.current.play(sequence, frequency, () => { if (run.current === generation) stop(); }); }
+      try { return await audio.current.play(sequence, frequency, () => { if (run.current === generation) stop(); }, volume); }
       catch { if (run.current === generation) stop(); throw new Error("Audio could not start. Try again, or check your browser's audio settings."); }
     } else {
       if (kind === "vibrate") {

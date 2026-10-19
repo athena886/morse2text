@@ -65,3 +65,14 @@ test("resume failure releases context and propagates a recoverable error", async
   await assert.rejects(player.play(sequence, 700, () => {}), /NotAllowedError/);
   assert.equal(ctx.state, "closed"); assert.equal(ctx.nodes.length, 0);
 });
+test("practice volume scales the actual gain without changing Morse timing", async () => {
+  const ctx = context(); const player = new SignalAudio(() => ctx);
+  await player.play(sequence, 700, () => {}, .5);
+  assert.equal(Math.max(...ctx.gain.events.map(e => e[0])), .09);
+  assert.ok(Math.abs(ctx.nodes[0].stops[0] - ctx.nodes[0].started - (sequence.total / 1000 + .02)) < 1e-9);
+  player.stop();
+});
+test("invalid volume is rejected before creating an audio context", async () => {
+  const player = new SignalAudio(() => assert.fail("Must not allocate audio resources"));
+  for (const volume of [-1, NaN, 2]) await assert.rejects(player.play(sequence, 700, () => {}, volume), /Volume/);
+});

@@ -32,7 +32,7 @@ test("server-renders the Morse translator and SEO metadata", async () => {
 });
 
 test("renders all public routes", async () => {
-  for (const path of ["/", "/morse-code-alphabet", "/learn-morse-code"]) {
+  for (const path of ["/", "/morse-code-alphabet", "/learn-morse-code", "/morse-code-practice"]) {
     const response = await render(path);
     assert.equal(response.status, 200, path);
     const html = await response.text();
@@ -79,6 +79,7 @@ test("ships crawl controls and branded static assets", async () => {
     "https://morse2text.com/",
     "https://morse2text.com/morse-code-alphabet/",
     "https://morse2text.com/learn-morse-code/",
+    "https://morse2text.com/morse-code-practice/",
   ]) {
     assert.ok(sitemap.includes(`<loc>${url}</loc>`), url);
   }
@@ -86,4 +87,21 @@ test("ships crawl controls and branded static assets", async () => {
   for (const file of ["og.png", "favicon.svg", "404.html"]) {
     await access(new URL(`../public/${file}`, import.meta.url));
   }
+});
+
+test("practice is pre-rendered with an honest quiz, metadata, schema, and no preselected answer", async () => {
+  const html = await (await render("/morse-code-practice")).text();
+  assert.match(html, /<title>Morse Code Practice — Listen, Answer &amp; Improve/);
+  assert.match(html, /Start 10-question session/);
+  for (const text of ["Character set", "Character speed", "Volume", "How to practice", "How your results work", "Speed and audio help", "Clear practice data"]) assert.ok(html.includes(text));
+  assert.doesNotMatch(html, /class="answer-feedback/);
+  const schemas = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map(m => JSON.parse(m[1]));
+  const app = schemas.find(s => s["@type"] === "WebApplication");
+  assert.equal(app.url, "https://morse2text.com/morse-code-practice/");
+  assert.equal(app.applicationCategory, "EducationalApplication");
+});
+test("practice is linked from the homepage and learning guide and links back to the core tools", async () => {
+  for (const path of ["/", "/learn-morse-code"]) assert.match(await (await render(path)).text(), /href="\/morse-code-practice\/"/);
+  const html = await (await render("/morse-code-practice")).text();
+  for (const href of ["/#translator", "/learn-morse-code/", "/morse-code-alphabet/"]) assert.ok(html.includes(`href="${href}"`));
 });

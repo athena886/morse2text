@@ -25,8 +25,9 @@ export class SignalAudio {
     if (context && context.state !== "closed") void context.close().catch(() => {});
   }
 
-  async play(sequence: Sequence, frequency: number, onComplete: () => void) {
+  async play(sequence: Sequence, frequency: number, onComplete: () => void, volume = 1) {
     this.stop();
+    if (!Number.isFinite(volume) || volume < 0 || volume > 1) throw new Error("Volume must be between zero and one.");
     const generation = this.generation;
     const context = this.createContext();
     this.context = context;
@@ -47,8 +48,8 @@ export class SignalAudio {
         const to = from + pulse.duration / 1000;
         const edge = Math.min(.005, pulse.duration / 4000);
         gain.gain.setValueAtTime(0, from);
-        gain.gain.linearRampToValueAtTime(.18, from + edge);
-        gain.gain.setValueAtTime(.18, to - edge);
+        gain.gain.linearRampToValueAtTime(.18 * volume, from + edge);
+        gain.gain.setValueAtTime(.18 * volume, to - edge);
         gain.gain.linearRampToValueAtTime(0, to);
       }
       oscillator.onended = () => {

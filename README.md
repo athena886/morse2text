@@ -18,6 +18,7 @@
 - Private, device-local translation history
 - Interactive letter/number reference with listening, copying, printing, and SVG download
 - Beginner listening samples with revealable answers
+- Ten-question listening quizzes with three character sets, first-answer scoring, mistake review, and browser-local results
 - Complete references for letters A–Z, numbers 0–9, common punctuation, and timing rules
 
 ## Tech stack
@@ -55,6 +56,7 @@ npm run typecheck
 - [Morse Code Translator & Generator](https://morse2text.com/)
 - [Morse Code Alphabet reference](https://morse2text.com/morse-code-alphabet/)
 - [Learn Morse Code guide](https://morse2text.com/learn-morse-code/)
+- [Morse Code Practice](https://morse2text.com/morse-code-practice/)
 
 ## License
 
