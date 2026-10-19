@@ -8,14 +8,16 @@
 
 ## Features
 
-- Bidirectional conversion: text to Morse code and Morse code to text, with automatic input detection
+- Bidirectional conversion: text to Morse code and Morse code to text, with automatic detection and explicit text/Morse modes
 - Morse audio playback with adjustable speed and tone
-- Synchronized flashing-light signals
-- WAV audio downloads
+- Separate flashing-light signals with standard Morse timing
+- WAV audio downloads generated in a cancellable worker (up to two minutes)
 - Vibration patterns on supported mobile devices
 - Light and dark themes
 - One-click copy and native sharing
 - Private, device-local translation history
+- Interactive letter/number reference with listening, copying, printing, and SVG download
+- Beginner listening samples with revealable answers
 - Complete references for letters A–Z, numbers 0–9, common punctuation, and timing rules
 
 ## Tech stack
@@ -45,6 +47,7 @@ Run the automated checks:
 
 ```bash
 npm test
+npm run typecheck
 ```
 
 ## Project links

@@ -37,7 +37,35 @@ test("renders all public routes", async () => {
     assert.equal(response.status, 200, path);
     const html = await response.text();
     assert.equal((html.match(/<h1\b/g) || []).length, 1, path);
+    const canonical = `https://morse2text.com${path === "/" ? "/" : `${path}/`}`;
+    assert.ok(html.includes(`<link rel="canonical" href="${canonical}"`), path);
+    assert.doesNotMatch(html, /<meta name="robots" content="noindex"/);
+    const schemas = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map(match => JSON.parse(match[1]));
+    if (path !== "/") {
+      const breadcrumb = schemas.find(schema => schema["@type"] === "BreadcrumbList");
+      assert.equal(breadcrumb.itemListElement.at(-1).item, canonical);
+    }
   }
+});
+
+test("existing pages expose real task controls and accurate feature boundaries in HTML", async () => {
+  const home = await (await render()).text();
+  assert.match(home, /Translation mode/);
+  assert.match(home, /Morse to text/);
+  assert.match(home, /not audio recordings/);
+  assert.match(home, /Copy A in Morse code/);
+  const alphabet = await (await render("/morse-code-alphabet")).text();
+  assert.match(alphabet, /Print chart/);
+  assert.match(alphabet, /Download SVG chart/);
+  for (const letter of ["A", "Z", "0", "9"]) {
+    assert.match(alphabet, new RegExp(`Listen to ${letter}`));
+    assert.match(alphabet, new RegExp(`Copy ${letter} in Morse code`));
+  }
+  const learn = await (await render("/learn-morse-code")).text();
+  assert.match(learn, /id="listening-samples"/);
+  assert.match(learn, /Listen to sample 1/);
+  assert.match(learn, /not a scored quiz/);
+  assert.doesNotMatch(learn, /without leaving the page/);
 });
 
 test("ships crawl controls and branded static assets", async () => {
